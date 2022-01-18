@@ -19,13 +19,13 @@ namespace AcademyFitnessMusaeva
     /// </summary>
     public partial class RegistrationCourseWindow : Window
     {
-        AcademyFitnessMusaevaEntities1 context;
-        public RegistrationCourseWindow(AcademyFitnessMusaevaEntities1 context, CourseRegistration currentRegistration)
+        AcademyFitnessMusaevaEntities2 context;
+        public RegistrationCourseWindow(AcademyFitnessMusaevaEntities2 context, CourseRegistration currentRegistration)
         {
             InitializeComponent();
             this.context = context;
-            CmbCourse.ItemsSource = context.Courses.ToList();
-            CmbTrainer.ItemsSource = context.Trainers.ToList();
+            CmbCourse.ItemsSource = context.Course.ToList();
+            CmbTrainer.ItemsSource = context.Trainer.ToList();
             this.DataContext = currentRegistration;
         }
 

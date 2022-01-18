@@ -17,13 +17,13 @@ namespace AcademyFitnessMusaeva
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Trainer()
         {
-            this.CourseRegistrations = new HashSet<CourseRegistration>();
+            this.CourseRegistration = new HashSet<CourseRegistration>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }
+        public virtual ICollection<CourseRegistration> CourseRegistration { get; set; }
     }
 }

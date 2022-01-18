@@ -4,10 +4,18 @@
              xmlns:local="clr-namespace:AcademyFitnessMusaeva"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style TargetType="Button">
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button">
             <Setter Property="Width" Value="100"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
             <Setter Property="Margin" Value="10"></Setter>
+                
         </Style>
         <Style TargetType="Control" x:Key="MyStyle">
             <Setter Property="Width" Value="100"></Setter>
@@ -24,5 +32,7 @@
             <Setter Property="Width" Value="200"></Setter>
         </Style>
         <Style TargetType="CheckBox" BasedOn="{StaticResource MyStyle}"></Style>
+        
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

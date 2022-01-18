@@ -20,22 +20,22 @@ namespace AcademyFitnessMusaeva
     /// </summary>
     public partial class MainWindow : Window
     {
-        AcademyFitnessMusaevaEntities1 context;
+        AcademyFitnessMusaevaEntities2 context;
         public MainWindow()
         {
             InitializeComponent();
-            context = new AcademyFitnessMusaevaEntities1();
-            CmbSelectTrainer.ItemsSource = context.Trainers.ToList();
-            RegistrationGrid.ItemsSource = context.CourseRegistrations.ToList();
+            context = new AcademyFitnessMusaevaEntities2();
+            CmbSelectTrainer.ItemsSource = context.Trainer.ToList();
+            RegistrationGrid.ItemsSource = context.CourseRegistration.ToList();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var newRegistration = new CourseRegistration();
-            context.CourseRegistrations.Add(newRegistration);
+            context.CourseRegistration.Add(newRegistration);
             var win = new RegistrationCourseWindow(context, newRegistration);
             win.ShowDialog();
-            RegistrationGrid.ItemsSource = context.CourseRegistrations.ToList();
+            RegistrationGrid.ItemsSource = context.CourseRegistration.ToList();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -49,9 +49,9 @@ namespace AcademyFitnessMusaeva
             MessageBoxResult result = MessageBox.Show("Вы уверены", "Вопрос", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                context.CourseRegistrations.Remove(row);
+                context.CourseRegistration.Remove(row);
                 context.SaveChanges();
-                RegistrationGrid.ItemsSource = context.CourseRegistrations.ToList();
+                RegistrationGrid.ItemsSource = context.CourseRegistration.ToList();
             }
         }
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -64,11 +64,11 @@ namespace AcademyFitnessMusaeva
 
         private void FiltrButton_Click(object sender, RoutedEventArgs e)
         {
-            RegistrationGrid.ItemsSource = context.CourseRegistrations.Where(x => x.IsDone == true).ToList();
+            RegistrationGrid.ItemsSource = context.CourseRegistration.Where(x => x.IsDone == true).ToList();
             MessageBoxResult result = MessageBox.Show("Вернуть все записи ?", "Вопрос", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                RegistrationGrid.ItemsSource = context.CourseRegistrations.ToList();
+                RegistrationGrid.ItemsSource = context.CourseRegistration.ToList();
             }
         }
 
@@ -76,13 +76,13 @@ namespace AcademyFitnessMusaeva
         {
             if (CmbSelectTrainer.SelectedItem == null) return;
             var currentTrainer = (Trainer)CmbSelectTrainer.SelectedItem;
-            List<CourseRegistration> ListTrainer = context.CourseRegistrations.ToList();
+            List<CourseRegistration> ListTrainer = context.CourseRegistration.ToList();
             RegistrationGrid.ItemsSource = ListTrainer.Where(x => x.Trainer == currentTrainer).ToList();
         }
 
         private void CanselButton_Click(object sender, RoutedEventArgs e)
         {
-            RegistrationGrid.ItemsSource = context.CourseRegistrations.ToList();
+            RegistrationGrid.ItemsSource = context.CourseRegistration.ToList();
         }
     }
 }
