@@ -17,6 +17,7 @@
             <Setter Property="Margin" Value="10"></Setter>
                 
         </Style>
+            
         <Style TargetType="Control" x:Key="MyStyle">
             <Setter Property="Width" Value="100"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
