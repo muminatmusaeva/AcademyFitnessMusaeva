@@ -21,6 +21,7 @@ namespace AcademyFitnessMusaeva
     public partial class MainWindow : Window
     {
         AcademyFitnessMusaevaEntities context;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -28,8 +29,14 @@ namespace AcademyFitnessMusaeva
             CmbSelectTrainer.ItemsSource = context.Trainers.ToList();
             RegistrationGrid.ItemsSource = context.CourseRegistrations.ToList();
 
-
+            var timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.IsEnabled = true;
+            timer.Tick += (o, t) => { LblTime.Content = DateTime.Now.ToString(); };
+            timer.Start();
         }
+
+        
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
