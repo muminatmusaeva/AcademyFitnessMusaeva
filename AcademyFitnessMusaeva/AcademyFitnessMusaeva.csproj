@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\fitness_dog.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -52,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -96,7 +100,13 @@
     <Compile Include="RegistrationCourseWindow.xaml.cs">
       <DependentUpon>RegistrationCourseWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RegistrationTrainersWindow.xaml.cs">
+      <DependentUpon>RegistrationTrainersWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Trainer.cs">
+      <DependentUpon>AcademyFitnessMusaevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
       <DependentUpon>AcademyFitnessMusaevaModel.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -112,6 +122,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RegistrationCourseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrationTrainersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,6 +178,9 @@
       <DependentUpon>AcademyFitnessMusaevaModel.edmx</DependentUpon>
       <LastGenOutput>AcademyFitnessMusaevaModel.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\fitness_dog.ico" />
+    <None Include="Resources\fitness.png" />
+    <None Include="Resources\fitness.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets')" />
