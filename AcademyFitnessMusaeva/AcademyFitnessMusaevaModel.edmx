@@ -24,6 +24,7 @@
           <Property Name="TotalPoint" Type="int" Nullable="false" />
           <Property Name="CertificateImage" Type="image" />
           <Property Name="Comment" Type="nvarchar" MaxLength="100" />
+          <Property Name="yes_no" Type="bit" />
         </EntityType>
         <EntityType Name="Trainer">
           <Key>
@@ -31,16 +32,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="user_name" />
-          </Key>
-          <Property Name="user_name" Type="nchar" MaxLength="15" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="15" Nullable="false" />
-          <Property Name="surname" Type="nchar" MaxLength="15" Nullable="false" />
-          <Property Name="mail" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="birthday" Type="date" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_CourseRegistration_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
@@ -70,7 +63,6 @@
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseRegistration" EntityType="Self.CourseRegistration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trainer" EntityType="Self.Trainer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CourseRegistration_Course" Association="Self.FK_CourseRegistration_Course">
             <End Role="Course" EntitySet="Course" />
             <End Role="CourseRegistration" EntitySet="CourseRegistration" />
@@ -105,6 +97,7 @@
           <Property Name="TotalPoint" Type="Int32" Nullable="false" />
           <Property Name="CertificateImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="yes_no" Type="Boolean" />
           <NavigationProperty Name="Course" Relationship="Self.FK_CourseRegistration_Course" FromRole="CourseRegistration" ToRole="Course" />
           <NavigationProperty Name="Trainer" Relationship="Self.FK_CourseRegistration_Trainer" FromRole="CourseRegistration" ToRole="Trainer" />
         </EntityType>
@@ -114,17 +107,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CourseRegistrations" Relationship="Self.FK_CourseRegistration_Trainer" FromRole="Trainer" ToRole="CourseRegistration" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="user_name" />
-          </Key>
-          <Property Name="user_name" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="surname" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <Association Name="FK_CourseRegistration_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
@@ -154,7 +139,6 @@
           <EntitySet Name="Courses" EntityType="Self.Course" />
           <EntitySet Name="CourseRegistrations" EntityType="Self.CourseRegistration" />
           <EntitySet Name="Trainers" EntityType="Self.Trainer" />
-          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_CourseRegistration_Course" Association="Self.FK_CourseRegistration_Course">
             <End Role="Course" EntitySet="Courses" />
             <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
@@ -189,6 +173,7 @@
                 <ScalarProperty Name="TotalPoint" ColumnName="TotalPoint" />
                 <ScalarProperty Name="CertificateImage" ColumnName="CertificateImage" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="yes_no" ColumnName="yes_no" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -197,17 +182,8 @@
               <MappingFragment StoreEntitySet="Trainer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="AcademyFitnessMusaevaModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="user_name" ColumnName="user_name" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="mail" ColumnName="mail" />
-                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

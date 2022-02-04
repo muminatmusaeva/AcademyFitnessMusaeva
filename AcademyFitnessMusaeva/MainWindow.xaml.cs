@@ -20,7 +20,7 @@ namespace AcademyFitnessMusaeva
     /// </summary>
     public partial class MainWindow : Window
     {
-        AcademyFitnessMusaevaEntities context;
+        public AcademyFitnessMusaevaEntities context;
         
         public MainWindow()
         {
@@ -92,6 +92,25 @@ namespace AcademyFitnessMusaeva
         private void CanselButton_Click(object sender, RoutedEventArgs e)
         {
             RegistrationGrid.ItemsSource = context.CourseRegistrations.ToList();
+        }
+    }
+    class PrefixValueConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            string s = value.ToString();
+            int prefixLength;
+            if (!int.TryParse(parameter.ToString(), out prefixLength) ||
+                s.Length <= prefixLength)
+            {
+                return s;
+            }
+            return s.Substring(0, prefixLength);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotSupportedException();
         }
     }
 }
