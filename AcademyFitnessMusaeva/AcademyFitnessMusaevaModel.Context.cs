@@ -13,10 +13,10 @@ namespace AcademyFitnessMusaeva
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AcademyFitnessMusaevaEntities2 : DbContext
+    public partial class AcademyFitnessMusaevaEntities : DbContext
     {
-        public AcademyFitnessMusaevaEntities2()
-            : base("name=AcademyFitnessMusaevaEntities2")
+        public AcademyFitnessMusaevaEntities()
+            : base("name=AcademyFitnessMusaevaEntities")
         {
         }
     
@@ -25,8 +25,8 @@ namespace AcademyFitnessMusaeva
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Course> Course { get; set; }
-        public virtual DbSet<CourseRegistration> CourseRegistration { get; set; }
-        public virtual DbSet<Trainer> Trainer { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<CourseRegistration> CourseRegistrations { get; set; }
+        public virtual DbSet<Trainer> Trainers { get; set; }
     }
 }

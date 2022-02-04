@@ -19,13 +19,13 @@ namespace AcademyFitnessMusaeva
     /// </summary>
     public partial class RegistrationCourseWindow : Window
     {
-        AcademyFitnessMusaevaEntities2 context;
-        public RegistrationCourseWindow(AcademyFitnessMusaevaEntities2 context, CourseRegistration currentRegistration)
+        AcademyFitnessMusaevaEntities context;
+        public RegistrationCourseWindow(AcademyFitnessMusaevaEntities context, CourseRegistration currentRegistration)
         {
             InitializeComponent();
             this.context = context;
-            CmbCourse.ItemsSource = context.Course.ToList();
-            CmbTrainer.ItemsSource = context.Trainer.ToList();
+            CmbCourse.ItemsSource = context.Courses.ToList();
+            CmbTrainer.ItemsSource = context.Trainers.ToList();
             this.DataContext = currentRegistration;
         }
 
@@ -61,5 +61,6 @@ namespace AcademyFitnessMusaeva
             }
             return true;
         }
+
     }
 }

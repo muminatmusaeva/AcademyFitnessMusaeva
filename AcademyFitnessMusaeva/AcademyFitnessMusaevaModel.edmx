@@ -24,6 +24,7 @@
           <Property Name="TotalPoint" Type="int" Nullable="false" />
           <Property Name="CertificateImage" Type="image" />
           <Property Name="Comment" Type="nvarchar" MaxLength="100" />
+          <Property Name="yes_no" Type="bit" />
         </EntityType>
         <EntityType Name="Trainer">
           <Key>
@@ -31,6 +32,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_CourseRegistration_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
@@ -80,7 +83,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CourseRegistration" Relationship="Self.FK_CourseRegistration_Course" FromRole="Course" ToRole="CourseRegistration" />
+          <NavigationProperty Name="CourseRegistrations" Relationship="Self.FK_CourseRegistration_Course" FromRole="Course" ToRole="CourseRegistration" />
         </EntityType>
         <EntityType Name="CourseRegistration">
           <Key>
@@ -94,6 +97,7 @@
           <Property Name="TotalPoint" Type="Int32" Nullable="false" />
           <Property Name="CertificateImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="yes_no" Type="Boolean" />
           <NavigationProperty Name="Course" Relationship="Self.FK_CourseRegistration_Course" FromRole="CourseRegistration" ToRole="Course" />
           <NavigationProperty Name="Trainer" Relationship="Self.FK_CourseRegistration_Trainer" FromRole="CourseRegistration" ToRole="Trainer" />
         </EntityType>
@@ -103,7 +107,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CourseRegistration" Relationship="Self.FK_CourseRegistration_Trainer" FromRole="Trainer" ToRole="CourseRegistration" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CourseRegistrations" Relationship="Self.FK_CourseRegistration_Trainer" FromRole="Trainer" ToRole="CourseRegistration" />
         </EntityType>
         <Association Name="FK_CourseRegistration_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
@@ -129,17 +135,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AcademyFitnessMusaevaEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Course" EntityType="Self.Course" />
-          <EntitySet Name="CourseRegistration" EntityType="Self.CourseRegistration" />
-          <EntitySet Name="Trainer" EntityType="Self.Trainer" />
+        <EntityContainer Name="AcademyFitnessMusaevaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Courses" EntityType="Self.Course" />
+          <EntitySet Name="CourseRegistrations" EntityType="Self.CourseRegistration" />
+          <EntitySet Name="Trainers" EntityType="Self.Trainer" />
           <AssociationSet Name="FK_CourseRegistration_Course" Association="Self.FK_CourseRegistration_Course">
-            <End Role="Course" EntitySet="Course" />
-            <End Role="CourseRegistration" EntitySet="CourseRegistration" />
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
           </AssociationSet>
           <AssociationSet Name="FK_CourseRegistration_Trainer" Association="Self.FK_CourseRegistration_Trainer">
-            <End Role="Trainer" EntitySet="Trainer" />
-            <End Role="CourseRegistration" EntitySet="CourseRegistration" />
+            <End Role="Trainer" EntitySet="Trainers" />
+            <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -147,8 +153,8 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище AcademyFitnessMusaevaModelContainer" CdmEntityContainer="AcademyFitnessMusaevaEntities2">
-          <EntitySetMapping Name="Course">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AcademyFitnessMusaevaModelContainer" CdmEntityContainer="AcademyFitnessMusaevaEntities">
+          <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="AcademyFitnessMusaevaModel.Course">
               <MappingFragment StoreEntitySet="Course">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -156,7 +162,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CourseRegistration">
+          <EntitySetMapping Name="CourseRegistrations">
             <EntityTypeMapping TypeName="AcademyFitnessMusaevaModel.CourseRegistration">
               <MappingFragment StoreEntitySet="CourseRegistration">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -167,14 +173,17 @@
                 <ScalarProperty Name="TotalPoint" ColumnName="TotalPoint" />
                 <ScalarProperty Name="CertificateImage" ColumnName="CertificateImage" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="yes_no" ColumnName="yes_no" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Trainer">
+          <EntitySetMapping Name="Trainers">
             <EntityTypeMapping TypeName="AcademyFitnessMusaevaModel.Trainer">
               <MappingFragment StoreEntitySet="Trainer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -192,7 +201,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />

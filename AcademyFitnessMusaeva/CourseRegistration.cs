@@ -22,6 +22,7 @@ namespace AcademyFitnessMusaeva
         public int TotalPoint { get; set; }
         public byte[] CertificateImage { get; set; }
         public string Comment { get; set; }
+        public Nullable<bool> yes_no { get; set; }
     
         public virtual Course Course { get; set; }
         public virtual Trainer Trainer { get; set; }
