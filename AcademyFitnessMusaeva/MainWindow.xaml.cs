@@ -93,6 +93,12 @@ namespace AcademyFitnessMusaeva
         {
             RegistrationGrid.ItemsSource = context.CourseRegistrations.ToList();
         }
+
+        private void AddTrainer_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationTrainersWindow registrationTrainersWindow = new RegistrationTrainersWindow();
+            registrationTrainersWindow.Show();
+        }
     }
     class PrefixValueConverter : IValueConverter
     {

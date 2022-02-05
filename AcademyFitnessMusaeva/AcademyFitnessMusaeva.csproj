@@ -91,7 +91,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AcademyFitnessMusaevaModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Course.cs">
+    <Compile Include="AuthWindow.xaml.cs">
+      <DependentUpon>AuthWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Cours.cs">
       <DependentUpon>AcademyFitnessMusaevaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CourseRegistration.cs">
@@ -106,6 +109,10 @@
     <Compile Include="Trainer.cs">
       <DependentUpon>AcademyFitnessMusaevaModel.tt</DependentUpon>
     </Compile>
+    <Page Include="AuthWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

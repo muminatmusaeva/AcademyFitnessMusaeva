@@ -11,7 +11,7 @@ namespace AcademyFitnessMusaeva
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Trainer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,47 +23,14 @@ namespace AcademyFitnessMusaeva
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string pass { get; set; }
 
-        public Trainer (string name, string surname, string pass)
+        public Trainer(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;
-            this.pass = pass;
         }
-        public override string ToString()
-        {
-            return "Пользователь: " + Name + Surname;
-        }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }
     }
 }
- /*public int Id { get; set; }
-private string name, surname, pass;
-public string Name
-{
-    get { return name; }
-    set { name = value; }
-}
-
-public string Surname
-{
-    get { return Surname; }
-    set { surname = value; }
-}
-
-public string Pass
-{
-    get { return pass; }
-    set { pass = value; }
-}
-public Trainer(string name, string surname, string pass)
-{
-    this.name = name;
-    this.surname = surname;
-    this.pass = pass;
-}
-[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }*/

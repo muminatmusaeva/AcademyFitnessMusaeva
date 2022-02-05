@@ -34,9 +34,9 @@
             <ComboBox Name="CmbSelectTrainer" Margin="400,10,10,10" Style="{StaticResource MaterialDesignFilledComboBox}" SelectedItem="{Binding Trainer.Surname}" SelectionChanged="CmbSelectTrainer_SelectionChanged" SelectedIndex="0" DisplayMemberPath="Name" Width="169"></ComboBox>
             <Button x:Name="CanselButton" HorizontalAlignment="Right" FontFamily="Time New Roman" FontSize="16"  Style="{StaticResource MaterialDesignFlatButton}"  Click="CanselButton_Click" Content="Отменить фильтр"/>
         </StackPanel>
-        <DataGrid RowBackground="Lavender" AlternatingRowBackground="WhiteSmoke" Background="{StaticResource MaterialDesignLightBackground}" Grid.Row="1" Name="RegistrationGrid" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid BorderThickness="2" RowBackground="Lavender" AlternatingRowBackground="WhiteSmoke" Background="{StaticResource MaterialDesignLightBackground}" Grid.Row="1" Name="RegistrationGrid" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Курс" Binding="{Binding Course.Title}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Курс" Binding="{Binding Cours.Title}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Тренер" Width="auto">
                     <DataGridTextColumn.Binding>
                         <MultiBinding StringFormat="{}{0}{1}">
@@ -51,6 +51,7 @@
                 <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}"></DataGridTextColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
+                        
                         <DataTemplate>
                             <Button Name="EditButton" Click="EditButton_Click" Style="{StaticResource MaterialDesignFlatButton}">Редактировать</Button>
                         </DataTemplate>
@@ -58,6 +59,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="AddTrainer" Content="Добавить тренера" Grid.Row="2" Width="auto" HorizontalAlignment="Left" Click="AddTrainer_Click"></Button>
         <Label x:Name="LblTime" Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignLabel}" Margin="0,0,15,0"></Label>
     </Grid>
 </Window>

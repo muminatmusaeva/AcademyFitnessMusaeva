@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Windows.Automation;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Windows.Media.Animation;
 
 namespace AcademyFitnessMusaeva
 {
@@ -24,16 +25,11 @@ namespace AcademyFitnessMusaeva
     {
        AcademyFitnessMusaevaEntities context;
 
-       /* public RegistrationTrainersWindow()
-        {
-
-        }*/
-
         public RegistrationTrainersWindow()
         {
             
             InitializeComponent();
-            context = new AcademyFitnessMusaevaEntities(); 
+            context = new AcademyFitnessMusaevaEntities();
         }
 
         private void Button_Reg_click(object sender, RoutedEventArgs e)
@@ -41,10 +37,6 @@ namespace AcademyFitnessMusaeva
 
             string Name = textBoxName.Text.Trim();
             string Surname = textBoxSurname.Text.Trim();
-
-            string pass = passBox.Text.Trim();
-
-            string pass_2 = passBox_2.Text.Trim();
 
 
             if (Name.Length == 0)
@@ -59,38 +51,17 @@ namespace AcademyFitnessMusaeva
                 textBoxSurname.Background = Brushes.DarkRed;
             }
 
-            else if (pass.Length < 5)
-            {
-                passBox.ToolTip = "Это поле введено некоректно!";
-                passBox.Background = Brushes.DarkRed;
-            }
-
-            else if (pass != pass_2)
-            {
-                passBox_2.ToolTip = "Это поле введено некоректно!";
-                passBox_2.Background = Brushes.DarkRed;
-            }
-
-            
-
             else
             {
                 textBoxName.ToolTip = "";
                 textBoxName.Background = Brushes.Transparent;
                 textBoxSurname.ToolTip = "";
                 textBoxSurname.Background = Brushes.Transparent;
-                passBox.ToolTip = " ";
-                passBox.Background = Brushes.Transparent;
-                passBox_2.ToolTip = " ";
-                passBox_2.Background = Brushes.Transparent;
 
-                MessageBox.Show("Успешно");
-                Trainer user = new Trainer(Name, Surname, pass);
+                MessageBox.Show("Вы зарегистрированы!");
+                Trainer user = new Trainer (Name, Surname);
                 context.Trainers.Add(user);
                 context.SaveChanges();
-
-               /* db.Users.Add(user);
-                db.SaveChanges();*/
 
             }
         }
@@ -98,6 +69,19 @@ namespace AcademyFitnessMusaeva
         private void Button_Window_Auth_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void passBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
+        private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+        {
+            DoubleAnimation btnreg = new DoubleAnimation();
+            btnreg.From = 200;
+            btnreg.To = 500;
+            btnreg.Duration = TimeSpan.FromSeconds(1);
+            regButton.BeginAnimation(Button.WidthProperty, btnreg);
         }
     }
 }

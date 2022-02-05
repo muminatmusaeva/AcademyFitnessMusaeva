@@ -25,8 +25,8 @@ namespace AcademyFitnessMusaeva
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<CourseRegistration> CourseRegistrations { get; set; }
+        public virtual DbSet<Cours> Courses { get; set; }
         public virtual DbSet<Trainer> Trainers { get; set; }
     }
 }
