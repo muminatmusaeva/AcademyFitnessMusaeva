@@ -19,17 +19,18 @@ namespace AcademyFitnessMusaeva
         {
             this.CourseRegistrations = new HashSet<CourseRegistration>();
         }
-
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-
-        public Trainer(string name, string surname)
+        public string CallNumber { get; set; }
+        public Trainer (string Surname, string Name, string CallNumber)
         {
-            this.Name = name;
-            this.Surname = surname;
+            this.Surname = Surname;
+            this.Name = Name;
+            this.CallNumber = CallNumber;
         }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }
     }

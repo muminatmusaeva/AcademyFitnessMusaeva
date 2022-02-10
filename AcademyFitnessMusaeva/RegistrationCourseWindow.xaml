@@ -1,4 +1,5 @@
 ﻿<Window x:Class="AcademyFitnessMusaeva.RegistrationCourseWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -29,16 +30,16 @@
             <TextBlock>Тренер</TextBlock>
             <ComboBox Name="CmbTrainer" SelectedItem="{Binding Trainer}" DisplayMemberPath="Name"></ComboBox>
             <TextBlock>Курс</TextBlock>
-            <ComboBox Name="CmbCourse" SelectedItem="{Binding Course}" DisplayMemberPath="Title"></ComboBox>
+            <ComboBox Name="CmbCourse" SelectedItem="{Binding Cours}" DisplayMemberPath="Title"></ComboBox>
             <TextBlock>Дата</TextBlock>
-            <DatePicker SelectedDate="{Binding CreateDate}"></DatePicker>
+            <DatePicker SelectedDate="{Binding CreatedDate}"></DatePicker>
             <TextBlock>Выполнение</TextBlock>
             <CheckBox IsChecked="{Binding IsDoneString}">Завершен</CheckBox>
             <TextBlock>Баллы</TextBlock>
             <TextBox Text="{Binding TotalPoint}" Name="TxtTotalPoint"></TextBox>
             <TextBlock>Комментарий</TextBlock>
-            <TextBox Text="{Binding Comment}" MaxLength="100"></TextBox>
+            <TextBox Text="{Binding Comment}" MaxLength="100" ></TextBox>
         </UniformGrid>
-        <Button x:Name="BtnSave" Grid.Row="1" Click="BtnSave_Click" Width="300">Save</Button>
+        <Button x:Name="BtnSave" Grid.Row="1" Click="BtnSave_Click" Width="300">Записать</Button>
     </Grid>
 </Window>

@@ -6,31 +6,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AcademyFitnessMusaeva"
         mc:Ignorable="d"
-        Title="Список регистрации на курс" Height="450" Width="1200">
+        Title="Список регистрации на курс" Height="500" Width="1200">
     
     <Window.Resources>
 
-        <Style TargetType="Button" x:Key="BtnRed" BasedOn="{StaticResource MaterialDesignFlatMidBgButton}">
-            <Setter Property="FontFamily" Value="Time New Roman"></Setter>
-            <Setter Property="FontSize" Value="16"></Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="DarkRed"></Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+       
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Background="{StaticResource MaterialDesignDivider}">
             <Button Name="AddButton"  Click="AddButton_Click">Добавить</Button>
             <Button Name="DeleteButton" Style="{StaticResource BtnRed}" Click="DeleteButton_Click" Cursor="Hand">Удалить</Button>
             <Button x:Name="FiltrButton" Click="FiltrButton_Click" Content="Показать завершенные"/>
-           
             <ComboBox Name="CmbSelectTrainer" Margin="400,10,10,10" Style="{StaticResource MaterialDesignFilledComboBox}" SelectedItem="{Binding Trainer.Surname}" SelectionChanged="CmbSelectTrainer_SelectionChanged" SelectedIndex="0" DisplayMemberPath="Name" Width="169"></ComboBox>
             <Button x:Name="CanselButton" HorizontalAlignment="Right" FontFamily="Time New Roman" FontSize="16"  Style="{StaticResource MaterialDesignFlatButton}"  Click="CanselButton_Click" Content="Отменить фильтр"/>
         </StackPanel>
@@ -39,7 +30,7 @@
                 <DataGridTextColumn Header="Курс" Binding="{Binding Cours.Title}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Тренер" Width="auto">
                     <DataGridTextColumn.Binding>
-                        <MultiBinding StringFormat="{}{0}{1}">
+                        <MultiBinding StringFormat="{}{0} {1}">
                             <Binding Path="Trainer.Surname"></Binding>
                             <Binding Path="Trainer.Name" ></Binding>
                         </MultiBinding>
@@ -59,7 +50,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="AddTrainer" Content="Добавить тренера" Grid.Row="2" Width="auto" HorizontalAlignment="Left" Click="AddTrainer_Click"></Button>
+        <Button x:Name="AddTrainer" Content="Список тренеров" Grid.Row="2" Width="auto" HorizontalAlignment="Left" Click="AddTrainer_Click"></Button>
         <Label x:Name="LblTime" Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignLabel}" Margin="0,0,15,0"></Label>
     </Grid>
 </Window>

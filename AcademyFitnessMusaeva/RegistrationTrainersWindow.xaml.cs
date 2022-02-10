@@ -15,6 +15,7 @@ using System.Windows.Automation;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Windows.Media.Animation;
+using System.Text.RegularExpressions;
 
 namespace AcademyFitnessMusaeva
 {
@@ -23,8 +24,7 @@ namespace AcademyFitnessMusaeva
     /// </summary>
     public partial class RegistrationTrainersWindow : Window
     {
-       AcademyFitnessMusaevaEntities context;
-
+        AcademyFitnessMusaevaEntities context;
         public RegistrationTrainersWindow()
         {
             
@@ -34,18 +34,23 @@ namespace AcademyFitnessMusaeva
 
         private void Button_Reg_click(object sender, RoutedEventArgs e)
         {
-
-            string Name = textBoxName.Text.Trim();
             string Surname = textBoxSurname.Text.Trim();
+            string Name = textBoxName.Text.Trim();
+            string CallNumber = textBoxCallNumber.Text.Trim();
 
-
-            if (Name.Length == 0)
+            if (Surname.Length == 0)
+            {
+                textBoxSurname.ToolTip = "Это поле введено некоректно!";
+                textBoxSurname.Background = Brushes.DarkRed;
+            }
+            
+            else if (Name.Length == 0)
             {
                 textBoxName.ToolTip = "Это поле введено некоректно!";
                 textBoxName.Background = Brushes.DarkRed;
             }
 
-            else if (Surname.Length == 0)
+            else if (CallNumber.Length!=11)
             {
                 textBoxSurname.ToolTip = "Это поле введено некоректно!";
                 textBoxSurname.Background = Brushes.DarkRed;
@@ -53,16 +58,21 @@ namespace AcademyFitnessMusaeva
 
             else
             {
-                textBoxName.ToolTip = "";
-                textBoxName.Background = Brushes.Transparent;
                 textBoxSurname.ToolTip = "";
                 textBoxSurname.Background = Brushes.Transparent;
+                textBoxName.ToolTip = "";
+                textBoxName.Background = Brushes.Transparent;
+                textBoxCallNumber.ToolTip = "";
+                textBoxCallNumber.Background = Brushes.Transparent;
+                
 
                 MessageBox.Show("Вы зарегистрированы!");
-                Trainer user = new Trainer (Name, Surname);
-                context.Trainers.Add(user);
+                Trainer trainer = new Trainer(Surname, Name, CallNumber);
+                context.Trainers.Add(trainer);
                 context.SaveChanges();
-
+                TrainersList trainersList = new TrainersList();
+                trainersList.Show();
+                this.Close();
             }
         }
 
@@ -82,6 +92,12 @@ namespace AcademyFitnessMusaeva
             btnreg.To = 500;
             btnreg.Duration = TimeSpan.FromSeconds(1);
             regButton.BeginAnimation(Button.WidthProperty, btnreg);
+        }
+
+        private new void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

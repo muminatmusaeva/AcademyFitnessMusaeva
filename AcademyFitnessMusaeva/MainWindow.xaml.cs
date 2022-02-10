@@ -96,8 +96,9 @@ namespace AcademyFitnessMusaeva
 
         private void AddTrainer_Click(object sender, RoutedEventArgs e)
         {
-            RegistrationTrainersWindow registrationTrainersWindow = new RegistrationTrainersWindow();
-            registrationTrainersWindow.Show();
+            TrainersList trainersList = new TrainersList();
+            trainersList.Show();
+            this.Close();
         }
     }
     class PrefixValueConverter : IValueConverter

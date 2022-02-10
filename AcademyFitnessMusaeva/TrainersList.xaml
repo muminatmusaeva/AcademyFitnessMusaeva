@@ -1,0 +1,35 @@
+﻿<Window x:Class="AcademyFitnessMusaeva.TrainersList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AcademyFitnessMusaeva"
+        mc:Ignorable="d"
+        Title="TrainersList" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Background="{StaticResource MaterialDesignDivider}">
+            <Button Name="AddButton"  Click="AddButton_Click">Добавить</Button>
+            <Button Name="DeleteButton" Style="{StaticResource BtnRed}" Click="DeleteButton_Click" Cursor="Hand">Удалить</Button>
+        </StackPanel>
+        <DataGrid BorderThickness="2" RowBackground="Lavender" AlternatingRowBackground="WhiteSmoke" Background="{StaticResource MaterialDesignLightBackground}" Grid.Row="1" Name="RegistrationGrid" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" x:Name="surname"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" x:Name="name"></DataGridTextColumn>
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding CallNumber}" x:Name="cellnumber"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="EditButton" Click="EditButton_Click" Style="{StaticResource MaterialDesignFlatButton}">Редактировать</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="OpenRegistration" Content="Вернуться" Grid.Row="2" Width="auto" HorizontalAlignment="Left" Click="AddTrainer_Click"></Button>
+    </Grid>
+</Window>

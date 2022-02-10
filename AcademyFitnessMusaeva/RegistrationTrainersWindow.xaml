@@ -17,9 +17,9 @@
                
                 <Button HorizontalAlignment="Right" Content="Войти" Click="Button_Window_Auth_Click" Style="{StaticResource MaterialDesignFlatButton}"/>
             </Grid>
-
-            <TextBox x:Name="textBoxName" Text="{Binding Trainer.Name}" materialDesign:HintAssist.Hint="Введите имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
             <TextBox x:Name="textBoxSurname" Text="{Binding Trainer.Surname}"  materialDesign:HintAssist.Hint="Введите фамилию" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <TextBox x:Name="textBoxName" Text="{Binding Trainer.Name}" materialDesign:HintAssist.Hint="Введите имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <TextBox x:Name="textBoxCallNumber" Text="{Binding Trainer.CallNumber}" PreviewTextInput="PreviewTextInput" materialDesign:HintAssist.Hint="Введите номер телефона" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
             <Button Content="Зарегестрироваться" Margin="0 20" Click="Button_Reg_click" x:Name="regButton" MouseEnter="UserControl_MouseEnter">
             </Button>
 
