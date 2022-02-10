@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using System.Windows.Automation;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Windows.Media.Animation;
+using System.Text.RegularExpressions;
 
 namespace AcademyFitnessMusaeva
 {
@@ -22,82 +24,80 @@ namespace AcademyFitnessMusaeva
     /// </summary>
     public partial class RegistrationTrainersWindow : Window
     {
-       AcademyFitnessMusaevaEntities context;
-
-       /* public RegistrationTrainersWindow()
-        {
-
-        }*/
-
+        AcademyFitnessMusaevaEntities context;
         public RegistrationTrainersWindow()
         {
             
             InitializeComponent();
-            context = new AcademyFitnessMusaevaEntities(); 
+            context = new AcademyFitnessMusaevaEntities();
         }
 
         private void Button_Reg_click(object sender, RoutedEventArgs e)
         {
-
-            string Name = textBoxName.Text.Trim();
             string Surname = textBoxSurname.Text.Trim();
+            string Name = textBoxName.Text.Trim();
+            string CallNumber = textBoxCallNumber.Text.Trim();
 
-            string pass = passBox.Text.Trim();
-
-            string pass_2 = passBox_2.Text.Trim();
-
-
-            if (Name.Length == 0)
+            if (Surname.Length == 0)
+            {
+                textBoxSurname.ToolTip = "Это поле введено некоректно!";
+                textBoxSurname.Background = Brushes.DarkRed;
+            }
+            
+            else if (Name.Length == 0)
             {
                 textBoxName.ToolTip = "Это поле введено некоректно!";
                 textBoxName.Background = Brushes.DarkRed;
             }
 
-            else if (Surname.Length == 0)
+            else if (CallNumber.Length!=11)
             {
                 textBoxSurname.ToolTip = "Это поле введено некоректно!";
                 textBoxSurname.Background = Brushes.DarkRed;
             }
 
-            else if (pass.Length < 5)
-            {
-                passBox.ToolTip = "Это поле введено некоректно!";
-                passBox.Background = Brushes.DarkRed;
-            }
-
-            else if (pass != pass_2)
-            {
-                passBox_2.ToolTip = "Это поле введено некоректно!";
-                passBox_2.Background = Brushes.DarkRed;
-            }
-
-            
-
             else
             {
-                textBoxName.ToolTip = "";
-                textBoxName.Background = Brushes.Transparent;
                 textBoxSurname.ToolTip = "";
                 textBoxSurname.Background = Brushes.Transparent;
-                passBox.ToolTip = " ";
-                passBox.Background = Brushes.Transparent;
-                passBox_2.ToolTip = " ";
-                passBox_2.Background = Brushes.Transparent;
+                textBoxName.ToolTip = "";
+                textBoxName.Background = Brushes.Transparent;
+                textBoxCallNumber.ToolTip = "";
+                textBoxCallNumber.Background = Brushes.Transparent;
+                
 
-                MessageBox.Show("Успешно");
-                Trainer user = new Trainer(Name, Surname, pass);
-                context.Trainers.Add(user);
+                MessageBox.Show("Вы зарегистрированы!");
+                Trainer trainer = new Trainer(Surname, Name, CallNumber);
+                context.Trainers.Add(trainer);
                 context.SaveChanges();
-
-               /* db.Users.Add(user);
-                db.SaveChanges();*/
-
+                TrainersList trainersList = new TrainersList();
+                trainersList.Show();
+                this.Close();
             }
         }
 
         private void Button_Window_Auth_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void passBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
+        private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+        {
+            DoubleAnimation btnreg = new DoubleAnimation();
+            btnreg.From = 200;
+            btnreg.To = 500;
+            btnreg.Duration = TimeSpan.FromSeconds(1);
+            regButton.BeginAnimation(Button.WidthProperty, btnreg);
+        }
+
+        private new void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

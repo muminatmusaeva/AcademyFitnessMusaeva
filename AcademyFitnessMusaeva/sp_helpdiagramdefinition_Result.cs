@@ -10,20 +10,10 @@
 namespace AcademyFitnessMusaeva
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CourseRegistration
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int Id { get; set; }
-        public int TrainerId { get; set; }
-        public int CourseId { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-        public bool IsDone { get; set; }
-        public int TotalPoint { get; set; }
-        public byte[] CertificateImage { get; set; }
-        public string Comment { get; set; }
-    
-        public virtual Cours Cours { get; set; }
-        public virtual Trainer Trainer { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

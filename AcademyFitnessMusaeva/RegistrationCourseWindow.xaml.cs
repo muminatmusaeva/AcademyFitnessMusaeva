@@ -44,7 +44,7 @@ namespace AcademyFitnessMusaeva
                 MessageBox.Show("Тренер не выбран");
                 return false;
             }
-            if(reg.Course == null)
+            if(reg.Cours == null)
             {
                 MessageBox.Show("Курсы не выбраны");
                 return false;

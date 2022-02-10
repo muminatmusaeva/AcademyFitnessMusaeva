@@ -91,7 +91,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AcademyFitnessMusaevaModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Course.cs">
+    <Compile Include="AuthWindow.xaml.cs">
+      <DependentUpon>AuthWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Cours.cs">
       <DependentUpon>AcademyFitnessMusaevaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CourseRegistration.cs">
@@ -103,9 +106,22 @@
     <Compile Include="RegistrationTrainersWindow.xaml.cs">
       <DependentUpon>RegistrationTrainersWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>AcademyFitnessMusaevaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>AcademyFitnessMusaevaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Trainer.cs">
       <DependentUpon>AcademyFitnessMusaevaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TrainersList.xaml.cs">
+      <DependentUpon>TrainersList.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AuthWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -123,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegistrationTrainersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrainersList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -12,24 +12,16 @@ namespace AcademyFitnessMusaeva
     using System;
     using System.Collections.Generic;
     
-    public partial class Trainer
+    public partial class Cours
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Trainer()
+        public Cours()
         {
             this.CourseRegistrations = new HashSet<CourseRegistration>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string CallNumber { get; set; }
-        public Trainer (string Surname, string Name, string CallNumber)
-        {
-            this.Surname = Surname;
-            this.Name = Name;
-            this.CallNumber = CallNumber;
-        }
+        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }

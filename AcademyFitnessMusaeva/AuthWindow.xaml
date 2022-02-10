@@ -1,0 +1,24 @@
+﻿<Window x:Class="AcademyFitnessMusaeva.AuthWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AcademyFitnessMusaeva"
+        mc:Ignorable="d"
+        Title="" Height="450" Width="700">
+    
+    <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+        </Border.Effect>
+        <StackPanel>
+            <TextBlock Text="Вход" FontSize="30"  FontWeight="Bold" Margin="0 0 0 20" />
+            <Grid Margin="0 0 0 20">
+            </Grid>
+            <PasswordBox x:Name="passBox"  materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+            <Button Content="Войти в кабинет" Margin="0 20" Click="Button_Auth_Click" x:Name="AuthButton" />
+
+        </StackPanel>
+    </Border>
+</Window>

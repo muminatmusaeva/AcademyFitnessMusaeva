@@ -12,20 +12,16 @@
             <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
         </Border.Effect>
         <StackPanel>
-            <TextBlock Text="Добро пожаловать!" FontSize="30"  FontWeight="Bold" Margin="0 0 0 20" />
+            <TextBlock Text="Региситрация тренера" FontSize="30"  FontWeight="Bold" Margin="0 0 0 20" />
             <Grid Margin="0 0 0 20">
                
                 <Button HorizontalAlignment="Right" Content="Войти" Click="Button_Window_Auth_Click" Style="{StaticResource MaterialDesignFlatButton}"/>
             </Grid>
-
-            <TextBox x:Name="textBoxName" Text="{Binding Trainer.Name}" materialDesign:HintAssist.Hint="Введите имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
             <TextBox x:Name="textBoxSurname" Text="{Binding Trainer.Surname}"  materialDesign:HintAssist.Hint="Введите фамилию" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-            <TextBox x:Name="passBox" Text="{Binding Trainer.pass}" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-            <TextBox x:Name="passBox_2"  materialDesign:HintAssist.Hint="Повторите пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-            <!-- <PasswordBox x:Name="passBox"  materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-            <PasswordBox x:Name="passBox_2"   materialDesign:HintAssist.Hint="Повторите  пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>-->
-
-            <Button Content="Зарегестрироваться" Margin="0 20" Click="Button_Reg_click" x:Name="regButton"/>
+            <TextBox x:Name="textBoxName" Text="{Binding Trainer.Name}" materialDesign:HintAssist.Hint="Введите имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <TextBox x:Name="textBoxCallNumber" Text="{Binding Trainer.CallNumber}" PreviewTextInput="PreviewTextInput" materialDesign:HintAssist.Hint="Введите номер телефона" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            <Button Content="Зарегестрироваться" Margin="0 20" Click="Button_Reg_click" x:Name="regButton" MouseEnter="UserControl_MouseEnter">
+            </Button>
 
         </StackPanel>
 

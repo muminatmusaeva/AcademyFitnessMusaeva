@@ -5,13 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище AcademyFitnessMusaevaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Course">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="CourseRegistration">
           <Key>
             <PropertyRef Name="Id" />
@@ -24,22 +17,28 @@
           <Property Name="TotalPoint" Type="int" Nullable="false" />
           <Property Name="CertificateImage" Type="image" />
           <Property Name="Comment" Type="nvarchar" MaxLength="100" />
-          <Property Name="yes_no" Type="bit" />
         </EntityType>
-        <EntityType Name="Trainer">
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trainers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CallNumber" Type="nvarchar" MaxLength="11" Nullable="false" />
         </EntityType>
         <Association Name="FK_CourseRegistration_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
           <End Role="CourseRegistration" Type="Self.CourseRegistration" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Course">
+            <Principal Role="Courses">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CourseRegistration">
@@ -47,11 +46,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CourseRegistration_Trainer">
-          <End Role="Trainer" Type="Self.Trainer" Multiplicity="1" />
+        <Association Name="FK_CourseRegistration_Trainers">
+          <End Role="Trainers" Type="Self.Trainers" Multiplicity="1" />
           <End Role="CourseRegistration" Type="Self.CourseRegistration" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Trainer">
+            <Principal Role="Trainers">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CourseRegistration">
@@ -59,16 +58,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище AcademyFitnessMusaevaModelContainer">
-          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseRegistration" EntityType="Self.CourseRegistration" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Trainer" EntityType="Self.Trainer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trainers" EntityType="Self.Trainers" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CourseRegistration_Course" Association="Self.FK_CourseRegistration_Course">
-            <End Role="Course" EntitySet="Course" />
+            <End Role="Courses" EntitySet="Courses" />
             <End Role="CourseRegistration" EntitySet="CourseRegistration" />
           </AssociationSet>
-          <AssociationSet Name="FK_CourseRegistration_Trainer" Association="Self.FK_CourseRegistration_Trainer">
-            <End Role="Trainer" EntitySet="Trainer" />
+          <AssociationSet Name="FK_CourseRegistration_Trainers" Association="Self.FK_CourseRegistration_Trainers">
+            <End Role="Trainers" EntitySet="Trainers" />
             <End Role="CourseRegistration" EntitySet="CourseRegistration" />
           </AssociationSet>
         </EntityContainer>
@@ -77,14 +107,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AcademyFitnessMusaevaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Course">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CourseRegistrations" Relationship="Self.FK_CourseRegistration_Course" FromRole="Course" ToRole="CourseRegistration" />
-        </EntityType>
         <EntityType Name="CourseRegistration">
           <Key>
             <PropertyRef Name="Id" />
@@ -97,9 +119,16 @@
           <Property Name="TotalPoint" Type="Int32" Nullable="false" />
           <Property Name="CertificateImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="yes_no" Type="Boolean" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_CourseRegistration_Course" FromRole="CourseRegistration" ToRole="Course" />
-          <NavigationProperty Name="Trainer" Relationship="Self.FK_CourseRegistration_Trainer" FromRole="CourseRegistration" ToRole="Trainer" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK_CourseRegistration_Course" FromRole="CourseRegistration" ToRole="Courses" />
+          <NavigationProperty Name="Trainer" Relationship="Self.FK_CourseRegistration_Trainers" FromRole="CourseRegistration" ToRole="Trainers" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CourseRegistrations" Relationship="Self.FK_CourseRegistration_Course" FromRole="Courses" ToRole="CourseRegistration" />
         </EntityType>
         <EntityType Name="Trainer">
           <Key>
@@ -108,14 +137,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CourseRegistrations" Relationship="Self.FK_CourseRegistration_Trainer" FromRole="Trainer" ToRole="CourseRegistration" />
+          <Property Name="CallNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CourseRegistrations" Relationship="Self.FK_CourseRegistration_Trainers" FromRole="Trainers" ToRole="CourseRegistration" />
         </EntityType>
         <Association Name="FK_CourseRegistration_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
           <End Role="CourseRegistration" Type="Self.CourseRegistration" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Course">
+            <Principal Role="Courses">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CourseRegistration">
@@ -123,11 +152,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CourseRegistration_Trainer">
-          <End Role="Trainer" Type="Self.Trainer" Multiplicity="1" />
+        <Association Name="FK_CourseRegistration_Trainers">
+          <End Role="Trainers" Type="Self.Trainer" Multiplicity="1" />
           <End Role="CourseRegistration" Type="Self.CourseRegistration" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Trainer">
+            <Principal Role="Trainers">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CourseRegistration">
@@ -136,32 +165,65 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AcademyFitnessMusaevaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Courses" EntityType="Self.Course" />
           <EntitySet Name="CourseRegistrations" EntityType="Self.CourseRegistration" />
+          <EntitySet Name="Courses" EntityType="Self.Cours" />
           <EntitySet Name="Trainers" EntityType="Self.Trainer" />
           <AssociationSet Name="FK_CourseRegistration_Course" Association="Self.FK_CourseRegistration_Course">
-            <End Role="Course" EntitySet="Courses" />
+            <End Role="Courses" EntitySet="Courses" />
             <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
           </AssociationSet>
-          <AssociationSet Name="FK_CourseRegistration_Trainer" Association="Self.FK_CourseRegistration_Trainer">
-            <End Role="Trainer" EntitySet="Trainers" />
+          <AssociationSet Name="FK_CourseRegistration_Trainers" Association="Self.FK_CourseRegistration_Trainers">
+            <End Role="Trainers" EntitySet="Trainers" />
             <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(AcademyFitnessMusaevaModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(AcademyFitnessMusaevaModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище AcademyFitnessMusaevaModelContainer" CdmEntityContainer="AcademyFitnessMusaevaEntities">
-          <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="AcademyFitnessMusaevaModel.Course">
-              <MappingFragment StoreEntitySet="Course">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CourseRegistrations">
             <EntityTypeMapping TypeName="AcademyFitnessMusaevaModel.CourseRegistration">
               <MappingFragment StoreEntitySet="CourseRegistration">
@@ -173,20 +235,51 @@
                 <ScalarProperty Name="TotalPoint" ColumnName="TotalPoint" />
                 <ScalarProperty Name="CertificateImage" ColumnName="CertificateImage" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="yes_no" ColumnName="yes_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="AcademyFitnessMusaevaModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Trainers">
             <EntityTypeMapping TypeName="AcademyFitnessMusaevaModel.Trainer">
-              <MappingFragment StoreEntitySet="Trainer">
+              <MappingFragment StoreEntitySet="Trainers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="CallNumber" ColumnName="CallNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище AcademyFitnessMusaevaModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище AcademyFitnessMusaevaModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище AcademyFitnessMusaevaModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище AcademyFitnessMusaevaModel.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AcademyFitnessMusaevaModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище AcademyFitnessMusaevaModel.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AcademyFitnessMusaevaModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище AcademyFitnessMusaevaModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище AcademyFitnessMusaevaModel.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
