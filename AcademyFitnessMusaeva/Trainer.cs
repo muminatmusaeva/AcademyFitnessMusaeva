@@ -30,6 +30,11 @@ namespace AcademyFitnessMusaeva
             this.Name = Name;
             this.CallNumber = CallNumber;
         }
+        public Trainer(string Name, string Surname)
+        {
+            this.Name = Name;
+            this.Surname = Surname;
+        }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }

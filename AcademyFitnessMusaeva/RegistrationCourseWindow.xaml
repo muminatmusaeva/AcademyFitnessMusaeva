@@ -28,11 +28,21 @@
         </Grid.RowDefinitions>
         <UniformGrid Columns="2">
             <TextBlock>Тренер</TextBlock>
-            <ComboBox Name="CmbTrainer" SelectedItem="{Binding Trainer}" DisplayMemberPath="Name"></ComboBox>
+            <ComboBox Name="CmbTrainer" SelectedItem="{Binding Trainer}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" TextSearch.Text="{Binding Trainer}">
+                            <TextBlock Text="{Binding Path= Name}"/>
+                            <TextBlock Text=" "/>
+                            <TextBlock Text="{Binding Path= Surname}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock>Курс</TextBlock>
             <ComboBox Name="CmbCourse" SelectedItem="{Binding Cours}" DisplayMemberPath="Title"></ComboBox>
             <TextBlock>Дата</TextBlock>
-            <DatePicker SelectedDate="{Binding CreatedDate}"></DatePicker>
+            <DatePicker x:Name="DateNow" SelectedDate="{Binding CreatedDate, Mode=OneWay}"></DatePicker>
             <TextBlock>Выполнение</TextBlock>
             <CheckBox IsChecked="{Binding IsDoneString}">Завершен</CheckBox>
             <TextBlock>Баллы</TextBlock>
