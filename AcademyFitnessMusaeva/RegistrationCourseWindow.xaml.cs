@@ -25,9 +25,9 @@ namespace AcademyFitnessMusaeva
             InitializeComponent();
             this.context = context;
             CmbCourse.ItemsSource = context.Courses.ToList();
-            CmbTrainer.ItemsSource = context.Trainers.ToList();
-            this.DataContext = currentRegistration;
+            CmbTrainer.ItemsSource = context.Trainers.ToList();            
             DateNow.SelectedDate = DateTime.Today;
+            this.DataContext = currentRegistration;
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)

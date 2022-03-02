@@ -30,13 +30,16 @@
                 <Setter Property="FontFamily" Value="Time New Roman"></Setter>
                 <Setter Property="FontSize" Value="16"></Setter>
             </Style>
-            <Style TargetType="ComboBox" BasedOn="{StaticResource MyStyle}">
+            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFilledComboBox}">
                 <Setter Property="Width" Value="200"></Setter>
                 <Setter Property="SelectedIndex" Value="0"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="7"></Setter>
+                <Setter Property="FontFamily" Value="Time New Roman"></Setter>
+             
             </Style>
-            <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignFilledDatePicker}">
+            <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}" >
                 <Setter Property="Width" Value="200"></Setter>
-                <Setter Property="Height" Value="30"></Setter>
                 <Setter Property="VerticalAlignment" Value="Center"></Setter>
                 <Setter Property="Margin" Value="10"></Setter>
                 <Setter Property="FontFamily" Value="Time New Roman"></Setter>

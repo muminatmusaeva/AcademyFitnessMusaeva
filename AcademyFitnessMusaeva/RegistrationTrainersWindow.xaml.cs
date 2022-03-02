@@ -36,7 +36,7 @@ namespace AcademyFitnessMusaeva
         {
             string Surname = textBoxSurname.Text.Trim();
             string Name = textBoxName.Text.Trim();
-            string CallNumber = textBoxCallNumber.Text.Trim();
+            decimal CallNumber = decimal.Parse(textBoxCallNumber.Text);
 
             if (Surname.Length == 0)
             {
@@ -48,12 +48,6 @@ namespace AcademyFitnessMusaeva
             {
                 textBoxName.ToolTip = "Это поле введено некоректно!";
                 textBoxName.Background = Brushes.DarkRed;
-            }
-
-            else if (CallNumber.Length!=11)
-            {
-                textBoxSurname.ToolTip = "Это поле введено некоректно!";
-                textBoxSurname.Background = Brushes.DarkRed;
             }
 
             else

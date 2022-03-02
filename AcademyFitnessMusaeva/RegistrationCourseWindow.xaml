@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AcademyFitnessMusaeva"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -42,7 +43,8 @@
             <TextBlock>Курс</TextBlock>
             <ComboBox Name="CmbCourse" SelectedItem="{Binding Cours}" DisplayMemberPath="Title"></ComboBox>
             <TextBlock>Дата</TextBlock>
-            <DatePicker x:Name="DateNow" SelectedDate="{Binding CreatedDate, Mode=OneWay}"></DatePicker>
+            <DatePicker x:Name="DateNow" SelectedDate="{Binding CreatedDate, ConverterCulture=ru, Mode=OneWay}">
+            </DatePicker>
             <TextBlock>Выполнение</TextBlock>
             <CheckBox IsChecked="{Binding IsDoneString}">Завершен</CheckBox>
             <TextBlock>Баллы</TextBlock>

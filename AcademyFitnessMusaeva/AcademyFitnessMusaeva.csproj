@@ -106,12 +106,6 @@
     <Compile Include="RegistrationTrainersWindow.xaml.cs">
       <DependentUpon>RegistrationTrainersWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>AcademyFitnessMusaevaModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>AcademyFitnessMusaevaModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Trainer.cs">
       <DependentUpon>AcademyFitnessMusaevaModel.tt</DependentUpon>
     </Compile>

@@ -23,17 +23,12 @@ namespace AcademyFitnessMusaeva
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string CallNumber { get; set; }
-        public Trainer (string Surname, string Name, string CallNumber)
+        public decimal CallNumber { get; set; }
+        public Trainer(string Surname, string Name,  decimal CallNumber)
         {
             this.Surname = Surname;
             this.Name = Name;
             this.CallNumber = CallNumber;
-        }
-        public Trainer(string Name, string Surname)
-        {
-            this.Name = Name;
-            this.Surname = Surname;
         }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
